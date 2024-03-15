@@ -40,29 +40,29 @@ const ld EPS = 1e-9;
 void solve()
 {
     int n;
-    cin >> n; // Initialize n with a value
-    set<int> st;
+    cin >> n;
+    vector<int> v(n);
     for (int i = 0; i < n; i++)
     {
         int el;
         cin >> el;
-        st.insert(el);
+        mp[el]++;
     }
-    if (n & 1)
+    for (auto &x : mp)
     {
-        if (n == 1)
-            cout << "NO" << endl;
-        if (ceil(n / 2) >= st.size())
-            cout << "NO" << endl;
-        else
+        int a = *max_element(x.second.begin(), x.second.end());
+        int s1 = x.first * a;
+        int s2 = n - s1;
+        int s3 = s2 * (s2 + 1) / 2;
+        int s4 = s3 - s2;
+        if (s4 > s1)
+        {
             cout << "YES" << endl;
-    }
-    else
-    {
-        if ((n / 2) >= st.size())
-            cout << "NO" << endl;
+        }
         else
-            cout << "YES" << endl;
+        {
+            cout << "NO" << endl;
+        }
     }
 }
 

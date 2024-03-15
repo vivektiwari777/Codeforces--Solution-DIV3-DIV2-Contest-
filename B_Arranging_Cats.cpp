@@ -39,23 +39,7 @@ const ld EPS = 1e-9;
 
 void solve()
 {
-    int n;
-    cin >> n;
-    string s, t;
-    cin >> s >> t;
-    ll add = 0;
-    ll remove = 0;
-    for (int i = 0; i < n; i++)
-    {
-        if (s[i] == '1' && t[i] == '0')
-            remove++;
-        if (s[i] == '0' && t[i] == '1')
-        {
-            add++;
-        }
-    }
-    int ans = max(remove, add);
-    cout << ans << endl;
+    priority_queue<int> pq;
 }
 
 int main()

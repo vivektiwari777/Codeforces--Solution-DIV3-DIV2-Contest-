@@ -39,30 +39,6 @@ const ld EPS = 1e-9;
 
 void solve()
 {
-    ll sum = 0;
-    int n;
-    cin >> n;
-    vector<int> v(n), res;
-    for (int i = 0; i < n; i++)
-    {
-        cin >> v[i];
-    }
-    for (int i = 0; i < n; i++)
-    {
-        if (v[i] < 0)
-        {
-            res.push_back(-1 * v[i]);
-        }
-        else
-        {
-            res.push_back(v[i]);
-        }
-    }
-    for (auto el : res)
-    {
-        sum += el;
-    }
-    cout << sum << endl;
 }
 
 int main()

@@ -42,10 +42,8 @@ void solve()
     int x1, y1, x2, y2, x3, y3, x4, y4;
     cin >> x1 >> y1 >> x2 >> y2 >> x3 >> y3 >> x4 >> y4;
 
-    // Calculate the length of one side of the square
     int sideLength = max({abs(x2 - x1), abs(x3 - x2), abs(x4 - x3), abs(x1 - x4)});
 
-    // Calculate the area of the square
     int area = sideLength * sideLength;
 
     cout << area << endl;

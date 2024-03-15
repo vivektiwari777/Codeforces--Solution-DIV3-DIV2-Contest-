@@ -1,56 +1,49 @@
 #include <iostream>
 #include <string>
-#include <stack>
-
+#include <unordered_map>
 using namespace std;
 
 void solve()
 {
-    string s;
-    cin >> s;
-    stack<char> st;
-    for (auto ch : s)
-    {
-        if (islower(ch))
-        {
-            if (!st.empty() && islower(st.top()))
-            {
-                st.pop();
-            }
-            else
-            {
-                if (ch != 'b' && ch != 'B') // Changed || to &&
-                {
-                    st.push(ch);
-                }
-            }
-        }
-        else // Moved this else block to correct position
-        {
-            if (!st.empty() && isupper(st.top()))
-            {
-                st.pop();
-            }
-            else
-            {
-                if (ch != 'b' && ch != 'B') // Changed || to &&
-                {
-                    st.push(ch);
-                }
-            }
-        }
-    }
-    string result = ""; // Removed extra space
-    while (!st.empty()) // Changed condition from st.isempty() to !st.empty()
-    {
-        result = st.top() + result; // Fixed the order of characters
-        st.pop();
-    }
-    cout << result << endl; // Moved cout outside of while loop
-}
+    int t;
+    cin >> t;
 
-int main()
-{
-    solve();
-    return 0;
+    while (t--)
+    {
+        int n;
+        cin >> n;
+        string s;
+        cin >> s;
+        unordered_map<char, int> mp;
+
+        for (auto ch : s)
+        {
+            mp[ch]++;
+        }
+
+        int max_freq = 0;
+        for (auto el : mp)
+        {
+            max_freq = max(max_freq, el.second);
+        }
+
+        int result;
+        if (max_freq > n / 2)
+        {
+            result = n - 2 * (n - max_freq);
+        }
+        else
+        {
+            if (n % 2 == 1)
+            {
+                result = 1;
+            }
+            else
+            {
+                result = n - 2 * max_freq;
+            }
+        }
+
+        cout << result << endl;
+    }
 }

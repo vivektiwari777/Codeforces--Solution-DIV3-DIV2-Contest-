@@ -37,9 +37,6 @@ const ll MOD = 1e9 + 7;
 const ll INF = 1e9;
 const ld EPS = 1e-9;
 
-#include <iostream>
-using namespace std;
-
 void solve()
 {
     int n, m;
@@ -47,21 +44,20 @@ void solve()
     string s, t;
     cin >> s >> t;
     int cnt = 6;
-    string res = s;
     int c = 0;
     bool f = false;
     while (cnt--)
     {
-        if (s.find(t) == string::npos) // Changed to string::npos to correctly check if t is not found in s
+        if (s.find(t) == string::npos)
         {
             f = false;
-            s += s; // Changed to res to retain the original value of s
+            s += s;
             c++;
         }
-        else // Removed unnecessary conditions as they are covered by the if and else if statements
+        else
         {
             f = true;
-            break; // Added to break out of the loop once t is found in s
+            break;
         }
     }
     if (f)
@@ -70,7 +66,7 @@ void solve()
     }
     else
     {
-        cout << -1 << endl; // Changed '-1' to -1 for correct output format
+        cout << -1 << endl;
     }
 }
 

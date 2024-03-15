@@ -39,7 +39,6 @@ const ld EPS = 1e-9;
 
 void solve()
 {
-
     int n;
     cin >> n;
     string s;
@@ -56,31 +55,22 @@ void solve()
     {
         max_freq = max(max_freq, el.second);
     }
-    // if (mp.count(max_freq) == 2)
-    // {
-    //     max_freq = 2 * max_freq;
-    // }
-    if (mp.find(max_freq) != mp.end())
-    {
-        max_freq = 2 * max_freq;
-    }
 
-    int result = 0;
-    if (max_freq >= ceil(n / 2))
+    int result;
+    if (max_freq > n / 2)
     {
-        result = 2 * max_freq - n;
-    }
-    else if (max_freq == 1 && n % 2 != 0)
-    {
-        result = 1;
-    }
-    else if (max_freq == 1 && n % 2 == 0)
-    {
-        result = 0;
+        result = n - 2 * (n - max_freq);
     }
     else
     {
-        result = n - 2 * max_freq;
+        if (n % 2 == 1)
+        {
+            result = 1;
+        }
+        else
+        {
+            result = n - 2 * max_freq;
+        }
     }
 
     cout << result << endl;

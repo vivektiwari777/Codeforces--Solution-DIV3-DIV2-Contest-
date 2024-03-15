@@ -37,28 +37,23 @@ const ll MOD = 1e9 + 7;
 const ll INF = 1e9;
 const ld EPS = 1e-9;
 
-#include <iostream>
-using namespace std;
-
 void solve()
 {
-    int n;
+    int n, cnt1 = 0, cnt2 = 0;
     cin >> n;
-    vector<int> a(n);
-    for (auto &el : a)
-        cin >> el;
-    for (int i = 0; i < n - 2; i++)
+    for (int i = 0; i < n; i++)
     {
-        if (a[i] < 0)
-            break;
-        a[i + 1] -= 2 * a[i];
-        a[i + 2] -= a[i];
-        a[i] -= a[i];
+        int el;
+        cin >> el;
+        if (el & 1)
+            cnt1++;
+        else
+            cnt2++;
     }
-    if (count(a.begin(), a.end(), 0) == n)
-        cout << "YES" << endl;
-    else
+    if (cnt1 % 2 != 0)
         cout << "NO" << endl;
+    else
+        cout << "YES" << endl;
 }
 
 int main()

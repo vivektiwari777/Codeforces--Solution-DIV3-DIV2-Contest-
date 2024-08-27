@@ -39,26 +39,36 @@ const ld EPS = 1e-9;
 
 void solve()
 {
-
-    int n;
-    cin >> n;
-    ll sum = 0;
-    vector<int> v(n);
-    for (int i = 0; i < n; i++)
+    int k, q;
+    cin >> k >> q;
+    vector<int> v1(k);
+    vector<int> v2(q);
+    vector<int> res; // Removing the initial size declaration since we will use push_back to add elements
+    for (int i = 0; i < k; i++)
     {
-        cin >> v[i];
-        sum += (v[i] - 1);
+        cin >> v1[i];
     }
-    int cnt_ones = count(v.begin(), v.end(), 1);
-    if (n > 1 && sum >= cnt_ones)
+    for (int i = 0; i < q; i++)
     {
-        cout << "YES" << endl;
-        return;
+        cin >> v2[i];
     }
-    else
+    int el = *min_element(v1.begin(), v1.end());
+    for (int i = 0; i < q; i++) // Fixing the loop to start from 0
     {
-        cout << "NO" << endl;
+        if (el > v2[i]) // Changed the comparison operator
+        {
+            res.push_back(v2[i]); // Adding v2[i] to res
+        }
+        else
+        {
+            res.push_back(el - 1); // Adding el to res
+        }
     }
+    for (int i = 0; i < res.size(); i++) // Changed the loop to start from 0
+    {
+        cout << res[i] << " ";
+    }
+    cout << endl;
 }
 
 int main()

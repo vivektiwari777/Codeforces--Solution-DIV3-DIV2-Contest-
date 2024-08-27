@@ -41,19 +41,22 @@ void solve()
 {
     int n;
     cin >> n;
-    vector<int> v(n);
-    for (int i = 0; i < n; i++)
-    {
-
-        cin >> v[i];
-    }
+    int a[n];
     int ans = 0;
-    for (int i = 0; i + 1 < n; i++)
+    for (int i = 1; i <= n; i++)
     {
-        ans += (!((v[i] ^ v[i + 1]) & 1)); // 3=11 && 5=101 3^5=110 & 1=0 means (same parity)--->0
+        cin >> a[i];
+    }
+    for (int i = 1; i < n; i++)
+    {
+        if (a[i] % 2 == a[i + 1] % 2)
+        {
+            ans++;
+        }
     }
     cout << ans << endl;
 }
+
 int main()
 {
     ios_base::sync_with_stdio(0);

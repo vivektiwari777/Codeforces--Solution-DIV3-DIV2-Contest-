@@ -39,25 +39,27 @@ const ld EPS = 1e-9;
 
 void solve()
 {
-
-    int n;
-    cin >> n;
-    ll sum = 0;
-    vector<int> v(n);
-    for (int i = 0; i < n; i++)
+    ll a, b;
+    cin >> a >> b;
+    ll rem = abs(b - a);
+    if (a == b)
     {
-        cin >> v[i];
-        sum += (v[i] - 1);
-    }
-    int cnt_ones = count(v.begin(), v.end(), 1);
-    if (n > 1 && sum >= cnt_ones)
-    {
-        cout << "YES" << endl;
+        cout << "0" << endl;
         return;
     }
     else
     {
-        cout << "NO" << endl;
+
+        if (rem % 10 == 0)
+        {
+            cout << rem / 10 << endl;
+            return;
+        }
+        else
+        {
+            cout << rem / 10 + 1 << endl;
+            return;
+        }
     }
 }
 

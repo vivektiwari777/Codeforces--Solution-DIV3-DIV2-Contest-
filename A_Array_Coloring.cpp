@@ -39,21 +39,30 @@ const ld EPS = 1e-9;
 
 void solve()
 {
-    int n, cnt1 = 0, cnt2 = 0;
+
+    int n, cnt = 0;
     cin >> n;
+    unordered_map<int, int> mp;
     for (int i = 0; i < n; i++)
     {
         int el;
         cin >> el;
-        if (el & 1)
-            cnt1++;
-        else
-            cnt2++;
+        mp[el]++;
     }
-    if (cnt1 % 2 != 0)
-        cout << "NO" << endl;
-    else
+    for (auto x : mp)
+    {
+        if (x.first % 2 != 0)
+        {
+            cnt += x.second;
+        }
+    }
+    if (cnt % 2 == 0)
         cout << "YES" << endl;
+    else
+    {
+        cout << "NO" << endl;
+        return;
+    }
 }
 
 int main()

@@ -36,29 +36,26 @@ const int MAX_N = 1e5 + 5;
 const ll MOD = 1e9 + 7;
 const ll INF = 1e9;
 const ld EPS = 1e-9;
+ll ok(ll a, ll b, ll x, ll y, ll n)
+{
+    ll d1 = a - x;
+    ll d2 = b - y;
+    ll c = min(d1, n);
+    a -= c;
+    n -= c;
+    ll e = min(d2, n);
+    b -= e;
+    n -= e;
+    ll ans = a * b;
+    return ans;
+}
 
 void solve()
 {
-
-    int n;
-    cin >> n;
-    ll sum = 0;
-    vector<int> v(n);
-    for (int i = 0; i < n; i++)
-    {
-        cin >> v[i];
-        sum += (v[i] - 1);
-    }
-    int cnt_ones = count(v.begin(), v.end(), 1);
-    if (n > 1 && sum >= cnt_ones)
-    {
-        cout << "YES" << endl;
-        return;
-    }
-    else
-    {
-        cout << "NO" << endl;
-    }
+    ll a, b, x, y, n;
+    cin >> a >> b >> x >> y >> n;
+    ll res = min(ok(a, b, x, y, n), ok(b, a, y, x, n));
+    cout << res << endl;
 }
 
 int main()

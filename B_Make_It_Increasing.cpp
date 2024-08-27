@@ -39,26 +39,30 @@ const ld EPS = 1e-9;
 
 void solve()
 {
-
-    int n;
-    cin >> n;
-    ll sum = 0;
-    vector<int> v(n);
+    int n, cnt = 0;
+    cin >> n; // Added input statement for 'n'
+    int a[n];
     for (int i = 0; i < n; i++)
     {
-        cin >> v[i];
-        sum += (v[i] - 1);
+        cin >> a[i];
     }
-    int cnt_ones = count(v.begin(), v.end(), 1);
-    if (n > 1 && sum >= cnt_ones)
+
+    for (int i = n - 2; i >= 0; i--)
     {
-        cout << "YES" << endl;
-        return;
+        int el = a[i + 1]; // Changed the position of 'el' initialization
+        while (a[i] >= el) // Changed the condition to 'a[i] >= el'
+        {
+            if (a[i] == 0) // Added a check for a[i] being 0 to avoid division by zero
+            {
+                cnt = -1; // If a[i] is 0, it's not possible to make the sequence strictly increasing
+                break;
+            }
+            a[i] /= 2;
+            cnt++;
+        }
+        el = a[i];
     }
-    else
-    {
-        cout << "NO" << endl;
-    }
+    cout << cnt << endl;
 }
 
 int main()

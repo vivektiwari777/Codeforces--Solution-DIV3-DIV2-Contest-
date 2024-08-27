@@ -39,26 +39,30 @@ const ld EPS = 1e-9;
 
 void solve()
 {
-
     int n;
     cin >> n;
-    ll sum = 0;
-    vector<int> v(n);
+    unordered_set<int> st;
+    vector<int> res(n);
     for (int i = 0; i < n; i++)
     {
-        cin >> v[i];
-        sum += (v[i] - 1);
+        cin >> res[i];
     }
-    int cnt_ones = count(v.begin(), v.end(), 1);
-    if (n > 1 && sum >= cnt_ones)
+    bool flage = true;
+    st.insert(res[0]);
+    for (int i = 1; i < n; i++)
     {
-        cout << "YES" << endl;
-        return;
+        if ((st.find(res[i] + 1) != st.end()) || st.find(res[i] - 1) != st.end())
+        {
+            st.insert(res[i]);
+            continue;
+        }
+        else
+        {
+            cout << "NO" << endl;
+            return;
+        }
     }
-    else
-    {
-        cout << "NO" << endl;
-    }
+    cout << "YES" << endl;
 }
 
 int main()

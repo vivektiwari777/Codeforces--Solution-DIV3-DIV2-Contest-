@@ -39,26 +39,44 @@ const ld EPS = 1e-9;
 
 void solve()
 {
-
     int n;
     cin >> n;
-    ll sum = 0;
-    vector<int> v(n);
-    for (int i = 0; i < n; i++)
+    vector<string> v(2);
+    for (int i = 0; i < 2; i++)
     {
         cin >> v[i];
-        sum += (v[i] - 1);
     }
-    int cnt_ones = count(v.begin(), v.end(), 1);
-    if (n > 1 && sum >= cnt_ones)
+    int ans = 0;
+    int temp = 0;
+    for (int i = 0; i < 2; i++)
     {
-        cout << "YES" << endl;
-        return;
+        for (int j = 0; j < n; j++)
+        {
+            if (v[i][j] == '.')
+            {
+                // int temp = 0;
+                if (j + 1 < n && v[i][j + 1] == '.')
+                    temp++;
+                if (j - 1 < 0 && v[i][j - 1] == '.')
+                    temp++;
+
+                // int ans = 0;
+                if (temp < 2)
+                    continue;
+                if (i == 0)
+                {
+                    if (v[i + 1][j - 1] != '.' && v[i + 1][j + 1] != '.' && v[i + 1][j] == '.')
+                        ans++;
+                }
+                else
+                {
+                    if (v[i - 1][j - 1] != '.' && v[i - 1][j + 1] != '.' && v[i - 1][j] == '.')
+                        ans++;
+                }
+            }
+        }
     }
-    else
-    {
-        cout << "NO" << endl;
-    }
+    cout << ans << endl;
 }
 
 int main()

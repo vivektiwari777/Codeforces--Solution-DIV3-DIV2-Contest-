@@ -1,11 +1,10 @@
-#include <iostream>
-#include <vector>
+#include <bits/stdc++.h>
 
 using namespace std;
 
 int main()
 {
-    int n, k;
+    long long n, k;
     cin >> n >> k;
     if (k <= (n + 1) / 2)
     {

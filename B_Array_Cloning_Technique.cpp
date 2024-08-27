@@ -39,25 +39,41 @@ const ld EPS = 1e-9;
 
 void solve()
 {
-
     int n;
     cin >> n;
-    ll sum = 0;
-    vector<int> v(n);
+    map<int, int> mp;
+    int maxfeq = INT_MIN;
     for (int i = 0; i < n; i++)
     {
-        cin >> v[i];
-        sum += (v[i] - 1);
+        int el;
+        cin >> el;
+        mp[el]++;
+        maxfeq = max(maxfeq, mp[el]);
     }
-    int cnt_ones = count(v.begin(), v.end(), 1);
-    if (n > 1 && sum >= cnt_ones)
+    if (maxfeq == n)
     {
-        cout << "YES" << endl;
+        cout << "0" << endl;
         return;
     }
     else
     {
-        cout << "NO" << endl;
+        int cnt = 1;
+        while (maxfeq < n)
+        {
+            if (maxfeq + maxfeq >= n)
+            {
+                cnt += (n - maxfeq);
+                cout << cnt << endl;
+                return;
+            }
+            else
+            {
+                cnt += maxfeq;
+                maxfeq *= 2;
+                cnt++;
+            }
+        }
+        cout << cnt << endl;
     }
 }
 

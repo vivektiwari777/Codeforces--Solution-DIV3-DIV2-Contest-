@@ -40,25 +40,24 @@ const ld EPS = 1e-9;
 void solve()
 {
 
-    int n;
-    cin >> n;
-    ll sum = 0;
-    vector<int> v(n);
-    for (int i = 0; i < n; i++)
+    int a, b, c;
+    int x = 0;
+    int ans = 0;
+    cin >> a >> b >> c;
+    if ((a >= b && a <= c) || (a <= b && a >= c))
     {
-        cin >> v[i];
-        sum += (v[i] - 1);
+        x = a;
     }
-    int cnt_ones = count(v.begin(), v.end(), 1);
-    if (n > 1 && sum >= cnt_ones)
+    else if ((b >= a && b <= c) || (b <= a && b >= c))
     {
-        cout << "YES" << endl;
-        return;
+        x = b;
     }
     else
     {
-        cout << "NO" << endl;
+        x = c;
     }
+    ans = abs(x - a) + abs(x - b) + abs(x - c);
+    cout << ans << endl;
 }
 
 int main()

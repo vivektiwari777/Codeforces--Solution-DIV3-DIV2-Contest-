@@ -39,26 +39,30 @@ const ld EPS = 1e-9;
 
 void solve()
 {
-
     int n;
-    cin >> n;
-    ll sum = 0;
-    vector<int> v(n);
+    string s;
+    cin >> n >> s;
+    int cnt[26];
     for (int i = 0; i < n; i++)
     {
-        cin >> v[i];
-        sum += (v[i] - 1);
+        cnt[s[i] - 'a']++;
     }
-    int cnt_ones = count(v.begin(), v.end(), 1);
-    if (n > 1 && sum >= cnt_ones)
+    string res;
+    for (int i = 0; i < 26; i++)
     {
-        cout << "YES" << endl;
-        return;
+        if (cnt[i])
+            res += char(i + 'a');
     }
-    else
+    int mp[26];
+    for (int i = 0; i < res.size(); i++)
     {
-        cout << "NO" << endl;
+        mp[res[i] - 'a'] = mp[res.size() - 1 - i] - 'a';
     }
+    for (int i = 0; i < n; i++)
+    {
+        cout << char('a' + mp[s[i] - 'a']);
+    }
+    cout << "\n";
 }
 
 int main()

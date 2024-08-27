@@ -39,25 +39,19 @@ const ld EPS = 1e-9;
 
 void solve()
 {
-
-    int n;
-    cin >> n;
-    ll sum = 0;
-    vector<int> v(n);
-    for (int i = 0; i < n; i++)
+    int a, b, c;
+    cin >> a >> b >> c;
+    if (a < b && b < c)
     {
-        cin >> v[i];
-        sum += (v[i] - 1);
+        cout << "STAIR" << endl;
     }
-    int cnt_ones = count(v.begin(), v.end(), 1);
-    if (n > 1 && sum >= cnt_ones)
+    else if (a < b && b > c)
     {
-        cout << "YES" << endl;
-        return;
+        cout << "PEAK" << endl;
     }
     else
     {
-        cout << "NO" << endl;
+        cout << "NONE" << endl;
     }
 }
 

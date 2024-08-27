@@ -39,26 +39,38 @@ const ld EPS = 1e-9;
 
 void solve()
 {
+    int n, k;
+    cin >> n >> k;
 
-    int n;
-    cin >> n;
-    ll sum = 0;
-    vector<int> v(n);
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+
+    vector<int> a(n);
     for (int i = 0; i < n; i++)
     {
-        cin >> v[i];
-        sum += (v[i] - 1);
+        cin >> a[i];
+        pq.push({a[i], i});
     }
-    int cnt_ones = count(v.begin(), v.end(), 1);
-    if (n > 1 && sum >= cnt_ones)
+
+    vector<int> ans;
+    while (!pq.empty())
     {
-        cout << "YES" << endl;
-        return;
+        pair<int, int> el = pq.top();
+        pq.pop();
+        if (el.first <= 0)
+        {
+            ans.push_back(el.second);
+        }
+        else
+        {
+            pq.push({el.first - k, el.second});
+        }
     }
-    else
+
+    for (int i = 0; i < ans.size(); i++)
     {
-        cout << "NO" << endl;
+        cout << ans[i] + 1 << " ";
     }
+    cout << endl;
 }
 
 int main()

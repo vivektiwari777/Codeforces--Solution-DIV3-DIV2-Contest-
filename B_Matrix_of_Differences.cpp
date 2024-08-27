@@ -39,25 +39,56 @@ const ld EPS = 1e-9;
 
 void solve()
 {
-
     int n;
     cin >> n;
-    ll sum = 0;
-    vector<int> v(n);
-    for (int i = 0; i < n; i++)
+    int a[n + 1][n + 1];
+    int small = 1;
+    int large = n * n;
+    int cnt = 0;
+    for (int i = 1; i <= n; i++)
     {
-        cin >> v[i];
-        sum += (v[i] - 1);
+        if (i % 2 != 0)
+        {
+            for (int j = 1; j <= n; j++)
+            {
+                if (cnt % 2 == 0)
+                {
+                    a[i][j] = small;
+                    small++;
+                }
+                else
+                {
+                    a[i][j] = large;
+                    large--;
+                }
+                cnt++;
+            }
+        }
+        else
+        {
+            for (int j = n; j >= 1; j--)
+            {
+                if (cnt % 2 == 0)
+                {
+                    a[i][j] = small;
+                    small++;
+                }
+                else
+                {
+                    a[i][j] = large;
+                    large--;
+                }
+                cnt++;
+            }
+        }
     }
-    int cnt_ones = count(v.begin(), v.end(), 1);
-    if (n > 1 && sum >= cnt_ones)
+    for (int i = 1; i <= n; i++)
     {
-        cout << "YES" << endl;
-        return;
-    }
-    else
-    {
-        cout << "NO" << endl;
+        for (int j = 1; j <= n; j++)
+        {
+            cout << a[i][j] << " ";
+        }
+        cout << endl;
     }
 }
 

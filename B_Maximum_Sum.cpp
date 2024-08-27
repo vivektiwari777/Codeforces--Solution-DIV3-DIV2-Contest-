@@ -40,25 +40,32 @@ const ld EPS = 1e-9;
 void solve()
 {
 
+    ll p = 1e9 + 7;
+    ll s = 0;
+    ll res = INT_MIN;
     int n;
     cin >> n;
-    ll sum = 0;
+    int k;
+    cin >> k;
     vector<int> v(n);
     for (int i = 0; i < n; i++)
     {
         cin >> v[i];
-        sum += (v[i] - 1);
+        s += v[i];
+        res = max(res, s);
     }
-    int cnt_ones = count(v.begin(), v.end(), 1);
-    if (n > 1 && sum >= cnt_ones)
+
+    if (res == 0)
     {
-        cout << "YES" << endl;
-        return;
+        cout << 0 << endl;
     }
-    else
+    while (k > 0)
     {
-        cout << "NO" << endl;
+        res *= 2;
+        res %= p;
+        k--;
     }
+    cout << res % p << endl;
 }
 
 int main()

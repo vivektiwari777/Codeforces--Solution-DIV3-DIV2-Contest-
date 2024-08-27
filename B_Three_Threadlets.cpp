@@ -39,6 +39,38 @@ const ld EPS = 1e-9;
 
 void solve()
 {
+    int a, b, c;
+    int minel = 0;
+    cin >> a >> b >> c;
+    if (a < b && b < c)
+    {
+        minel = a;
+    }
+    else if (b < a && a < c)
+    {
+        minel = b;
+    }
+    else
+    {
+        minel = c;
+    }
+    if (a == b && b == c)
+    {
+        cout << "YES" << endl;
+        return;
+    }
+    int cnt = 0;
+    cnt += minel - a + minel - b + minel - c;
+    if (cnt % 3 == 0)
+    {
+        cout << "YES" << endl;
+        return;
+    }
+    else
+    {
+        cout << "NO" << endl;
+        return;
+    }
 }
 
 int main()

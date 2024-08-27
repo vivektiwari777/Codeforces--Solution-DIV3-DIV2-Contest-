@@ -39,25 +39,26 @@ const ld EPS = 1e-9;
 
 void solve()
 {
-
-    int n;
-    cin >> n;
-    ll sum = 0;
-    vector<int> v(n);
+    int n, m, i;
+    cin >> n >> m;
+    int a1[105], a2[105], a3[105], a4[105];
+    bool flage = false;
     for (int i = 0; i < n; i++)
     {
-        cin >> v[i];
-        sum += (v[i] - 1);
+        cin >> a1[i] >> a2[i] >> a3[i] >> a4[i];
+        if (a2[i] == a3[i])
+        {
+            flage = true;
+        }
     }
-    int cnt_ones = count(v.begin(), v.end(), 1);
-    if (n > 1 && sum >= cnt_ones)
+
+    if (m & 1 || flage == false)
     {
-        cout << "YES" << endl;
-        return;
+        cout << "NO" << endl;
     }
     else
     {
-        cout << "NO" << endl;
+        cout << "YES" << endl;
     }
 }
 

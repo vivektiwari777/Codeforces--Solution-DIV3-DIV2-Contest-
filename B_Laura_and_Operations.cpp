@@ -39,25 +39,75 @@ const ld EPS = 1e-9;
 
 void solve()
 {
-
-    int n;
-    cin >> n;
-    ll sum = 0;
-    vector<int> v(n);
-    for (int i = 0; i < n; i++)
+    int x1 = 0, x2 = 0, x3 = 0;
+    // vector<int> v(3);
+    int a, b, c;
+    cin >> a >> b >> c;
+    if (a > b && a > c)
     {
-        cin >> v[i];
-        sum += (v[i] - 1);
+        x1 = a;
     }
-    int cnt_ones = count(v.begin(), v.end(), 1);
-    if (n > 1 && sum >= cnt_ones)
+    if (b > a && b > c)
     {
-        cout << "YES" << endl;
-        return;
+        x2 = b;
+    }
+    if (c > a && c > b)
+    {
+        x3 = c;
+    }
+    if (x1 == x2 && x2 == x3)
+    {
+        cout << "1"
+             << " "
+             << "1"
+             << " "
+             << "1"
+             << " " << endl;
+    }
+    else if (x1 > x2 && x1 > x3)
+    {
+        cout << "1"
+             << " "
+             << "0"
+             << " "
+             << "0"
+             << " " << endl;
+    }
+    else if (x2 > x1 && x2 > x3)
+    {
+        cout << "0"
+             << " "
+             << "1"
+             << " "
+             << "0"
+             << " " << endl;
+    }
+    else if (x1 == x2 && x2 > x3)
+    {
+        cout << "1"
+             << " "
+             << "1"
+             << " "
+             << "1"
+             << " " << endl;
+    }
+    else if (x1 == x3 && x3 > x2)
+    {
+        cout << "1"
+             << " "
+             << "1"
+             << " "
+             << "1"
+             << " " << endl;
     }
     else
     {
-        cout << "NO" << endl;
+        cout << "0"
+             << " "
+             << "0"
+             << " "
+             << "1"
+             << " " << endl;
     }
 }
 

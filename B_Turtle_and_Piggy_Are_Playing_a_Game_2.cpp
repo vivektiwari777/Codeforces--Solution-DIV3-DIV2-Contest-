@@ -39,26 +39,24 @@ const ld EPS = 1e-9;
 
 void solve()
 {
-
     int n;
     cin >> n;
-    ll sum = 0;
     vector<int> v(n);
+    int mididx = 0;
     for (int i = 0; i < n; i++)
     {
         cin >> v[i];
-        sum += (v[i] - 1);
     }
-    int cnt_ones = count(v.begin(), v.end(), 1);
-    if (n > 1 && sum >= cnt_ones)
+    if (n & 1)
     {
-        cout << "YES" << endl;
-        return;
+        mididx = (n + 1) / 2 - 1;
     }
     else
     {
-        cout << "NO" << endl;
+        mididx = n / 2;
     }
+    sort(v.begin(), v.end());
+    cout << v[mididx] << endl;
 }
 
 int main()

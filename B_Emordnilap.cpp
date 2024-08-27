@@ -37,28 +37,27 @@ const ll MOD = 1e9 + 7;
 const ll INF = 1e9;
 const ld EPS = 1e-9;
 
-void solve()
-{
+// const int MOD = 1000000007;
 
-    int n;
-    cin >> n;
-    ll sum = 0;
-    vector<int> v(n);
-    for (int i = 0; i < n; i++)
+int helper(int n)
+{
+    if (n == 1 || n == 2)
     {
-        cin >> v[i];
-        sum += (v[i] - 1);
-    }
-    int cnt_ones = count(v.begin(), v.end(), 1);
-    if (n > 1 && sum >= cnt_ones)
-    {
-        cout << "YES" << endl;
-        return;
+        return n;
     }
     else
     {
-        cout << "NO" << endl;
+        return (helper(n - 1) * n) % MOD;
     }
+}
+
+void solve()
+{
+    int n;
+    cin >> n;
+
+    // Corrected order of operations and modulus application
+    cout << (1LL * (n % MOD) * (n - 1) % MOD * helper(n)) % MOD << endl;
 }
 
 int main()

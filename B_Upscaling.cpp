@@ -3,23 +3,35 @@
 using namespace std;
 
 template <typename A, typename B>
-ostream &operator<<(ostream &os, const pair<A, B> &p) { return os << '(' << p.first << ", " << p.second << ')'; }
+ostream &operator<<(ostream &os, const pair<A, B> &p)
+{
+    return os << '(' << p.first << ", " << p.second << ')';
+}
+
 template <typename T_container, typename T = typename enable_if<!is_same<T_container, string>::value, typename T_container::value_type>::type>
 ostream &operator<<(ostream &os, const T_container &v)
 {
     os << '{';
     string sep;
     for (const T &x : v)
+    {
         os << sep << x, sep = ", ";
+    }
     return os << '}';
 }
-void dbg_out() { cerr << endl; }
+
+void dbg_out()
+{
+    cerr << endl;
+}
+
 template <typename Head, typename... Tail>
 void dbg_out(Head H, Tail... T)
 {
     cerr << ' ' << H;
     dbg_out(T...);
 }
+
 #ifdef LOCAL
 #define dbg(...) cerr << "(" << #__VA_ARGS__ << "):", dbg_out(__VA_ARGS__)
 #else
@@ -37,27 +49,25 @@ const ll MOD = 1e9 + 7;
 const ll INF = 1e9;
 const ld EPS = 1e-9;
 
-void solve()
+void printPattern(int t)
 {
 
     int n;
     cin >> n;
-    ll sum = 0;
-    vector<int> v(n);
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < 2 * n; i++)
     {
-        cin >> v[i];
-        sum += (v[i] - 1);
-    }
-    int cnt_ones = count(v.begin(), v.end(), 1);
-    if (n > 1 && sum >= cnt_ones)
-    {
-        cout << "YES" << endl;
-        return;
-    }
-    else
-    {
-        cout << "NO" << endl;
+        for (int j = 0; j < 2 * n; j++)
+        {
+            if ((i / 2 + j / 2) % 2 == 0)
+
+                cout << "#";
+
+            else
+            {
+                cout << ".";
+            }
+        }
+        cout << endl;
     }
 }
 
@@ -70,7 +80,6 @@ int main()
     cin >> tc;
     for (int t = 1; t <= tc; t++)
     {
-        // cout << "Case #" << t << ": ";
-        solve();
+        printPattern(t);
     }
 }

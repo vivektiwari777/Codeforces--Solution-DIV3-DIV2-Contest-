@@ -42,23 +42,23 @@ void solve()
 
     int n;
     cin >> n;
-    ll sum = 0;
-    vector<int> v(n);
+    int a[n];
+    unordered_map<int, int> mp;
+    int cnt = 0;
     for (int i = 0; i < n; i++)
     {
-        cin >> v[i];
-        sum += (v[i] - 1);
+        int el;
+        cin >> el;
+        mp[el]++;
     }
-    int cnt_ones = count(v.begin(), v.end(), 1);
-    if (n > 1 && sum >= cnt_ones)
+    for (auto &x : mp)
     {
-        cout << "YES" << endl;
-        return;
+        if (x.second % 2 == 0)
+        {
+            cnt++;
+        }
     }
-    else
-    {
-        cout << "NO" << endl;
-    }
+    cout << cnt << endl;
 }
 
 int main()

@@ -39,28 +39,38 @@ const ld EPS = 1e-9;
 
 void solve()
 {
+    int n, a, b;
+    cin >> n >> a >> b;
 
-    int n;
-    cin >> n;
-    ll sum = 0;
-    vector<int> v(n);
-    for (int i = 0; i < n; i++)
+    if (n % 2 == 0)
     {
-        cin >> v[i];
-        sum += (v[i] - 1);
-    }
-    int cnt_ones = count(v.begin(), v.end(), 1);
-    if (n > 1 && sum >= cnt_ones)
-    {
-        cout << "YES" << endl;
-        return;
+
+        int c1 = a * n;
+        int c2 = b * (n / 2);
+        if (c1 < c2)
+        {
+            cout << c1 << endl;
+        }
+        else
+        {
+            cout << c2 << endl;
+        }
     }
     else
     {
-        cout << "NO" << endl;
+
+        int c1 = a * n;
+        int c2 = b * ((n - 1) / 2) + a;
+        if (c1 < c2)
+        {
+            cout << c1 << endl;
+        }
+        else
+        {
+            cout << c2 << endl;
+        }
     }
 }
-
 int main()
 {
     ios_base::sync_with_stdio(0);

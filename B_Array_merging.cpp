@@ -39,26 +39,32 @@ const ld EPS = 1e-9;
 
 void solve()
 {
-
     int n;
     cin >> n;
-    ll sum = 0;
-    vector<int> v(n);
+    int ans = INT_MIN;
+    unordered_map<int, int> mp;
+    vector<int> a(n), b(n);
     for (int i = 0; i < n; i++)
     {
-        cin >> v[i];
-        sum += (v[i] - 1);
+        cin >> a[i];
     }
-    int cnt_ones = count(v.begin(), v.end(), 1);
-    if (n > 1 && sum >= cnt_ones)
+    for (int i = 0; i < n; i++)
     {
-        cout << "YES" << endl;
-        return;
+        cin >> b[i];
     }
-    else
+    for (auto el : a)
     {
-        cout << "NO" << endl;
+        mp[el]++;
     }
+    for (auto x : b)
+    {
+        mp[x]++;
+    }
+    for (auto el : mp)
+    {
+        ans = max(ans, el.second);
+    }
+    cout << ans << endl;
 }
 
 int main()
